@@ -4,17 +4,6 @@ import sys
 
 pygame.init()
 
-# Set up sprites
-player_sprite = pygame.image.load(os.path.join('img', 'Mario_Sprite.bmp'))
-
-# Set up screen
-RESOLUTION = [800, 600]
-screen = pygame.display.set_mode(RESOLUTION)
-pygame.display.set_caption('Platformer')
-
-# Define colors
-BLACK = (0, 0, 0)
-
 class Player(pygame.sprite.Sprite):
     """Represents the user-controlled character."""
 
@@ -23,28 +12,32 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load(os.path.join('img', 'Mario_Sprite.bmp'))
 
         self.rect = self.image.get_rect()
-        self.rect.y = y
         self.rect.x = x
+        self.rect.y = y
 
         self.dx = 0
         self.dy = 0
 
-        self.walls = None
-
     def accelerate(self, x, y):
-        """Change the velocity of the player."""
         self.dx += x
         self.dy += y
 
     def update(self):
-        """Updates the position of the player."""
         self.rect.x += self.dx
         self.rect.y += self.dy
 
-# Instantiate player and add to list of sprites
+# Define colors
+BLACK = (0, 0, 0)
+
+# Set up screen
+RESOLUTION = [800, 600]
+screen = pygame.display.set_mode(RESOLUTION)
+pygame.display.set_caption('Platformer')
+
+# Set up game objects
 sprite_list = pygame.sprite.Group()
 
-player = Player(100, 100)
+player = Player(200, 200)
 sprite_list.add(player)
 
 while True:
