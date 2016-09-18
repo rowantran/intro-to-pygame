@@ -9,7 +9,7 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
         super(Player, self).__init__()
-        self.image = pygame.image.load(os.path.join('img', 'Mario_Sprite.bmp'))
+        self.image = pygame.image.load(os.path.join('img', 'mario.bmp'))
 
         self.rect = self.image.get_rect()
         self.rect.x = x
