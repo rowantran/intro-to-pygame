@@ -9,7 +9,7 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
         super(Player, self).__init__()
-        self.image = pygame.image.load(os.path.join('img', 'mario.bmp')).convert_alpha()
+        self.image = pygame.image.load(os.path.join('img', 'mario.bmp'))
 
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -86,15 +86,23 @@ walls.add(wall)
 sprite_list.add(wall)
 
 # Blocks
-wall = Wall(200, 500, 50, 50)
+wall = Wall(200, 550, 50, 50)
 walls.add(wall)
 sprite_list.add(wall)
 
-wall = Wall(275, 450, 50, 50)
+wall = Wall(275, 500, 50, 50)
 walls.add(wall)
 sprite_list.add(wall)
 
-wall = Wall(350, 400, 50, 50)
+wall = Wall(350, 450, 50, 50)
+walls.add(wall)
+sprite_list.add(wall)
+
+wall = Wall(425, 500, 50, 50)
+walls.add(wall)
+sprite_list.add(wall)
+
+wall = Wall(500, 550, 50, 50)
 walls.add(wall)
 sprite_list.add(wall)
 

@@ -32,6 +32,8 @@ sprite_list = pygame.sprite.Group()
 player = Player(50, 500)
 sprite_list.add(player)
 
+clock = pygame.time.Clock()
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -41,3 +43,5 @@ while True:
     sprite_list.update()
     sprite_list.draw(screen)
     pygame.display.flip()
+
+    clock.tick(60)

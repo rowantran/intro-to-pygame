@@ -9,7 +9,7 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
         super(Player, self).__init__()
-        self.image = pygame.image.load(os.path.join('img', 'mario.bmp')).convert_alpha()
+        self.image = pygame.image.load(os.path.join('img', 'mario.bmp'))
 
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -42,6 +42,8 @@ sprite_list = pygame.sprite.Group()
 player = Player(50, 500)
 sprite_list.add(player)
 
+clock = pygame.time.Clock()
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -69,3 +71,5 @@ while True:
     sprite_list.update()
     sprite_list.draw(screen)
     pygame.display.flip()
+    
+    clock.tick(60)
