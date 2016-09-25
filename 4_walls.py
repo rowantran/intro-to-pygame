@@ -18,18 +18,46 @@ class Player(pygame.sprite.Sprite):
         self.dx = 0
         self.dy = 0
 
-        self.walls = None
-
     def accelerate(self, x, y):
         self.dx += x
         self.dy += y
 
     def update(self):
         self.rect.x += self.dx
+        blocks_hit = pygame.sprite.spritecollide(self, self.walls, False)
+        for block in blocks_hit:
+            if self.dx > 0:
+                # Player moved right into a wall
+                self.rect.right = block.rect.left
+            else:
+                # Player moved left into a wall
+                self.rect.left = block.rect.right
+
         self.rect.y += self.dy
+        blocks_hit = pygame.sprite.spritecollide(self, self.walls, False)
+        for block in blocks_hit:
+            if self.dy > 0:
+                # Player moved down into a wall
+                self.rect.bottom = block.rect.top
+            else:
+                # Player moved up into a wall
+                self.rect.top = block.rect.bottom
+
+class Wall(pygame.sprite.Sprite):
+    """Represents a wall that Player collides with."""
+    def __init__(self, x, y, width, height):
+        super(Wall, self).__init__()
+
+        self.image = pygame.Surface([width, height])
+        self.image.fill(RED)
+
+        self.rect = self.image.get_rect()
+        self.rect.y = y
+        self.rect.x = x
 
 # Define colors
 BLACK = (0, 0, 0)
+RED = (255, 0, 0)
 
 # Set up screen
 RESOLUTION = [800, 600]
@@ -41,6 +69,38 @@ sprite_list = pygame.sprite.Group()
 
 player = Player(50, 500)
 sprite_list.add(player)
+
+walls = pygame.sprite.Group()
+
+# Level boundaries
+wall = Wall(0, 0, 10, 600)
+walls.add(wall)
+sprite_list.add(wall)
+
+wall = Wall(10, 0, 790, 10)
+walls.add(wall)
+sprite_list.add(wall)
+
+wall = Wall(790, 10, 10, 590)
+walls.add(wall)
+sprite_list.add(wall)
+
+# Blocks
+wall = Wall(200, 500, 50, 50)
+walls.add(wall)
+sprite_list.add(wall)
+
+wall = Wall(275, 450, 50, 50)
+walls.add(wall)
+sprite_list.add(wall)
+
+wall = Wall(350, 400, 50, 50)
+walls.add(wall)
+sprite_list.add(wall)
+
+player.walls = walls
+
+clock = pygame.time.Clock()
 
 while True:
     for event in pygame.event.get():
@@ -69,3 +129,6 @@ while True:
     sprite_list.update()
     sprite_list.draw(screen)
     pygame.display.flip()
+
+    clock.tick(60)
+

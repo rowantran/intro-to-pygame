@@ -29,7 +29,7 @@ pygame.display.set_caption('Platformer')
 # Set up game objects
 sprite_list = pygame.sprite.Group()
 
-player = Player(200, 200)
+player = Player(50, 500)
 sprite_list.add(player)
 
 while True:
