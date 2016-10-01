@@ -18,8 +18,6 @@ class Player(pygame.sprite.Sprite):
         self.dx = 0
         self.dy = 0
 
-        self.walls = None
-
     def accelerate(self, x, y):
         self.dx += x
         self.dy += y
@@ -44,28 +42,30 @@ sprite_list.add(player)
 
 clock = pygame.time.Clock()
 
+VELOCITY = 3
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player.accelerate(-3, 0)
+                player.accelerate(-VELOCITY, 0)
             elif event.key == pygame.K_RIGHT:
-                player.accelerate(3, 0)
+                player.accelerate(VELOCITY, 0)
             elif event.key == pygame.K_UP:
-                player.accelerate(0, -3)
+                player.accelerate(0, -VELOCITY)
             elif event.key == pygame.K_DOWN:
-                player.accelerate(0, 3)
+                player.accelerate(0, VELOCITY)
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-                player.accelerate(3, 0)
+                player.accelerate(VELOCITY, 0)
             elif event.key == pygame.K_RIGHT:
-                player.accelerate(-3, 0)
+                player.accelerate(-VELOCITY, 0)
             elif event.key == pygame.K_UP:
-                player.accelerate(0, 3)
+                player.accelerate(0, VELOCITY)
             elif event.key == pygame.K_DOWN:
-                player.accelerate(0, -3)
+                player.accelerate(0, -VELOCITY)
 
     screen.fill(BLACK)
     sprite_list.update()
