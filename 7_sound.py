@@ -183,22 +183,26 @@ pygame.mixer.music.play(-1)
 
 clock = pygame.time.Clock()
 
+VELOCITY = 3
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player.accelerate(-3, 0)
+                player.accelerate(-VELOCITY, 0)
             elif event.key == pygame.K_RIGHT:
-                player.accelerate(3, 0)
+                player.accelerate(VELOCITY, 0)
             elif event.key == pygame.K_UP:
-                player.accelerate(0, -6)
+                player.accelerate(0, -2*VELOCITY)
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-                player.accelerate(3, 0)
+                player.accelerate(VELOCITY, 0)
             elif event.key == pygame.K_RIGHT:
-                player.accelerate(-3, 0)
+                player.accelerate(-VELOCITY, 0)
+            elif event.key == pygame.K_UP:
+                player.accelerate(0, 2*VELOCITY)
 
     screen.fill(BLACK)
     sprite_list.update()
