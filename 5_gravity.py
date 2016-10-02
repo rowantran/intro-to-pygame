@@ -148,7 +148,7 @@ while True:
             if event.key == pygame.K_LEFT:
                 player.accelerate(VELOCITY, 0)
             elif event.key == pygame.K_RIGHT:
-                player.accelerate(VELOCITY, 0)
+                player.accelerate(-VELOCITY, 0)
             elif event.key == pygame.K_UP:
                 player.accelerate(0, 2 * VELOCITY)
 

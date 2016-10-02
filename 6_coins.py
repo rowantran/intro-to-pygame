@@ -174,6 +174,8 @@ player.coins = coins
 
 clock = pygame.time.Clock()
 
+VELOCITY = 3
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
